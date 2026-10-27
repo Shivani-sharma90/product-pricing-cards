@@ -1,0 +1,302 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing Plans</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f5ff;
+  color: #20243a;
+  padding: 40px 6%;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+header p {
+  color: #6558e8;
+  margin-top: 12px;
+}
+
+.toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 25px 0 40px;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  font-size: 15px;
+}
+
+#billing {
+  background: #6558e8;
+  width: 54px;
+  height: 29px;
+  border-radius: 20px;
+  padding: 4px;
+}
+
+#knob {
+  display: block;
+  background: white;
+  height: 21px;
+  width: 21px;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+#billing.yearly #knob {
+  transform: translateX(25px);
+}
+
+.plans {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  max-width: 1050px;
+  margin: auto;
+}
+
+.card {
+  background: white;
+  padding: 32px 24px;
+  border-radius: 18px;
+  position: relative;
+  border: 1px solid #e3e5f5;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px #4b43a322;
+}
+
+.popular {
+  border: 2px solid #6558e8;
+}
+
+.badge {
+  position: absolute;
+  top: -13px;
+  right: 18px;
+  background: #6558e8;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.best {
+  background: #0b9870;
+}
+
+.card h2 {
+  margin-bottom: 10px;
+}
+
+.description {
+  color: #777b91;
+  min-height: 42px;
+  font-size: 14px;
+}
+
+.price {
+  font-size: 36px;
+  font-weight: bold;
+  margin: 24px 0 6px;
+}
+
+.price small {
+  font-size: 14px;
+  color: #777b91;
+  font-weight: normal;
+}
+
+.billing-note {
+  color: #777b91;
+  font-size: 13px;
+  margin-bottom: 22px;
+}
+
+ul {
+  list-style: none;
+  margin: 22px 0;
+}
+
+li {
+  padding: 9px 0;
+  border-bottom: 1px solid #f0f0f6;
+  font-size: 14px;
+}
+
+li::before {
+  content: "✓ ";
+  color: #0b9870;
+  font-weight: bold;
+}
+
+.choose {
+  width: 100%;
+  padding: 13px;
+  border-radius: 8px;
+  background: #6558e8;
+  color: white;
+  transition: background 0.3s;
+}
+
+.choose:hover {
+  background: #4637c3;
+}
+
+footer {
+  text-align: center;
+  margin-top: 45px;
+  color: #777b91;
+  font-size: 13px;
+}
+
+@media (max-width: 800px) {
+  .plans {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    gap: 30px;
+  }
+
+  body {
+    padding: 35px 5%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Simple, Transparent Pricing</h1>
+  <p>Choose the perfect plan for your needs.</p>
+</header>
+
+<div class="toggle">
+  <span>Monthly</span>
+  <button id="billing" aria-label="Toggle billing period"
+          aria-pressed="false" onclick="toggleBilling()">
+    <span id="knob"></span>
+  </button>
+  <span>Yearly</span>
+  <span style="color:#0b9870;font-size:13px">Save 20%</span>
+</div>
+
+<main class="plans">
+
+  <article class="card">
+    <h2>Starter</h2>
+    <p class="description">Perfect for personal projects.</p>
+    <div class="price" data-month="9" data-year="86">
+      $9<small>/month</small>
+    </div>
+    <p class="billing-note">Billed monthly</p>
+    <ul>
+      <li>1 Project</li>
+      <li>Basic Analytics</li>
+      <li>Email Support</li>
+      <li>5 GB Storage</li>
+    </ul>
+    <button class="choose" onclick="choosePlan('Starter')">
+      Get Started
+    </button>
+  </article>
+
+  <article class="card popular">
+    <span class="badge">POPULAR</span>
+    <h2>Professional</h2>
+    <p class="description">For growing teams and creators.</p>
+    <div class="price" data-month="19" data-year="182">
+      $19<small>/month</small>
+    </div>
+    <p class="billing-note">Billed monthly</p>
+    <ul>
+      <li>10 Projects</li>
+      <li>Advanced Analytics</li>
+      <li>Priority Support</li>
+      <li>50 GB Storage</li>
+    </ul>
+    <button class="choose" onclick="choosePlan('Professional')">
+      Get Started
+    </button>
+  </article>
+
+  <article class="card">
+    <span class="badge best">BEST VALUE</span>
+    <h2>Enterprise</h2>
+    <p class="description">For businesses that need more.</p>
+    <div class="price" data-month="49" data-year="470">
+      $49<small>/month</small>
+    </div>
+    <p class="billing-note">Billed monthly</p>
+    <ul>
+      <li>Unlimited Projects</li>
+      <li>Custom Analytics</li>
+      <li>24/7 Support</li>
+      <li>Unlimited Storage</li>
+    </ul>
+    <button class="choose" onclick="choosePlan('Enterprise')">
+      Get Started
+    </button>
+  </article>
+
+</main>
+
+<footer>
+  © 2026 Pricing Plans | Designed with HTML, CSS & JavaScript
+</footer>
+
+<script>
+let yearly = false;
+
+function toggleBilling() {
+  yearly = !yearly;
+
+  const toggle = document.getElementById("billing");
+  toggle.classList.toggle("yearly", yearly);
+  toggle.setAttribute("aria-pressed", yearly);
+
+  document.querySelectorAll(".price").forEach(price => {
+    const amount = yearly
+      ? price.dataset.year
+      : price.dataset.month;
+
+    price.innerHTML = "$" + amount +
+      "<small>/month</small>";
+  });
+
+  document.querySelectorAll(".billing-note").forEach(note => {
+    note.textContent = yearly
+      ? "Billed annually"
+      : "Billed monthly";
+  });
+}
+
+function choosePlan(plan) {
+  alert("You selected the " + plan + " plan!");
+}
+</script>
+
+</body>
+</html>
